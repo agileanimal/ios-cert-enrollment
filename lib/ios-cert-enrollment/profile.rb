@@ -10,7 +10,7 @@ module IOSCertEnrollment
       self.identifier = IOSCertEnrollment.identifier
       self.display_name = IOSCertEnrollment.display_name
       self.organization = IOSCertEnrollment.organization
-      self.  = ""
+      self.description = ""
       self.expiration = nil
       self.icon = nil
     end
