@@ -101,7 +101,7 @@ module IOSCertEnrollment
     
     
     def sign
-      signed_profile = OpenSSL::PKCS7.sign(SSL.certificate, SSL.key,  self.payload, [], OpenSSL::PKCS7::BINARY)
+      signed_profile = OpenSSL::PKCS7.sign(SSL.certificate, SSL.key,  self.payload, [SSL.chain], OpenSSL::PKCS7::BINARY)
       return Certificate.new(signed_profile.to_der, "application/x-apple-aspen-config")        
       
     end
