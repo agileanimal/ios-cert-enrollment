@@ -1,7 +1,7 @@
-require File.expand_path('../ios-cert-enrollment/configuration', __FILE__)
-require File.expand_path('../ios-cert-enrollment/sign', __FILE__)
-require File.expand_path('../ios-cert-enrollment/profile', __FILE__)
-require File.expand_path('../ios-cert-enrollment/device', __FILE__)
+require 'ios-cert-enrollment/configuration'
+require 'ios-cert-enrollment/sign'
+require 'ios-cert-enrollment/profile'
+require 'ios-cert-enrollment/device'
 
 module IOSCertEnrollment
   extend Configuration  
