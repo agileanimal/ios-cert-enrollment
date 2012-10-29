@@ -81,6 +81,33 @@ module IOSCertEnrollment
         self.payload = Plist::Emit.dump([content_payload])
         return self
     end
+    
+    def mdm()
+      mdm_payload = general_payload()
+      scep_payload = encryption_cert_request("Encryption identity payload.")
+      mdm_payload['PayloadIdentifier'] = self.identifier
+      mdm_payload['PayloadType'] = "com.apple.mdm" # do not modify
+      
+      # mdm setup
+      # ask to be able to do, everything...
+      mdm_payload['AccessRights'] = 
+        ( 1 || 2 || 4 || 8 || 16 || 32 || 64 || 128 || 256 || 512 || 1024 || 2048 || 4096)
+      mdm_payload['UseDevelopmentAPNS'] = false
+      mdm_payload['CheckOutWhenRemoved'] = true
+      mdm_payload['SignMessage'] = false #TODO: turn this on...
+      # the link
+      # content_payload['CheckInURL'] = self.url # this is the same as Server URL if not set...
+      mdm_payload['ServerURL'] = self.url
+      mdm_payload['Topic'] = "com.apple.mgmt.External.c79eea93-d430-4cfc-925e-a07a0d17bdf6"
+      mdm_payload['IdentityCertificateUUID'] = scep_payload['PayloadUUID']
+
+      scep_payload['PayloadContent']['Challenge'] = "signed-auth-token"
+      
+      #mdm_payload['PayloadContent'] = [scep_payload]
+      
+      self.payload = Plist::Emit.dump([scep_payload, mdm_payload])
+      return self
+    end
 
 
 
