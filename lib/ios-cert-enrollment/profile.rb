@@ -91,7 +91,7 @@ module IOSCertEnrollment
       # mdm setup
       # ask to be able to do, everything...
       mdm_payload['AccessRights'] = 
-        ( 1 || 2 || 4 || 8 || 16 || 32 || 64 || 128 || 256 || 512 || 1024 || 2048 || 4096)
+        ( 1 | 2 | 4 | 8 | 16 | 32 | 64 | 128 | 256 | 512 | 1024 | 2048 | 4096 )
       mdm_payload['UseDevelopmentAPNS'] = false
       mdm_payload['CheckOutWhenRemoved'] = true
       mdm_payload['SignMessage'] = false #TODO: turn this on...
