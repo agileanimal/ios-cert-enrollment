@@ -82,7 +82,7 @@ module IOSCertEnrollment
         return self
     end
     
-    def mdm()
+    def mdm(serverURL=nil)
       mdm_payload = general_payload()
       scep_payload = encryption_cert_request("Encryption identity payload.")
       mdm_payload['PayloadIdentifier'] = self.identifier
@@ -97,7 +97,7 @@ module IOSCertEnrollment
       mdm_payload['SignMessage'] = false #TODO: turn this on...
       # the link
       # content_payload['CheckInURL'] = self.url # this is the same as Server URL if not set...
-      mdm_payload['ServerURL'] = self.url
+      mdm_payload['ServerURL'] = serverURL || self.url
       mdm_payload['Topic'] = "com.apple.mgmt.External.c79eea93-d430-4cfc-925e-a07a0d17bdf6"
       mdm_payload['IdentityCertificateUUID'] = scep_payload['PayloadUUID']
 
