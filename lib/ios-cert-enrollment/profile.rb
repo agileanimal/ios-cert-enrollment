@@ -82,7 +82,7 @@ module IOSCertEnrollment
         return self
     end
     
-    def mdm(serverURL=nil)
+    def mdm(serverURL = nil)
       mdm_payload = general_payload()
       scep_payload = encryption_cert_request("Encryption identity payload.")
       mdm_payload['PayloadIdentifier'] = self.identifier
